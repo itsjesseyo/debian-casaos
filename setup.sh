@@ -9,19 +9,6 @@ LOCALE="en_US.UTF-8"
 KEYMAP="us"
 
 # --- Basic Setup ---
-echo "[1/8] Setting hostname to $HOSTNAME..."
-hostnamectl set-hostname $HOSTNAME
-echo "127.0.1.1 $HOSTNAME" >> /etc/hosts
-
-echo "[2/8] Setting timezone to $TIMEZONE..."
-timedatectl set-timezone $TIMEZONE
-
-echo "[3/8] Setting locale and keymap..."
-sed -i "s/# $LOCALE UTF-8/$LOCALE UTF-8/" /etc/locale.gen
-locale-gen
-update-locale LANG=$LOCALE
-localectl set-keymap $KEYMAP
-
 echo "[4/8] Installing packages..."
 apt update && apt upgrade -y
 apt install -y \
